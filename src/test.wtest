@@ -1,0 +1,38 @@
+import sistemaDeMensajeria.*
+
+test "El paquete de George que no está pago no puede ser llevado por Neo a la matrix" {
+	paquete.estaPago(false)
+	assert.equals(false, paquete.estaPago())
+	matrix.mensajeroActual(neo)
+	assert.equals(false, matrix.puedePasar())
+}
+
+test "El paquete de George que sí está pago puede ser llevado por Chuck a la matrix" {
+	paquete.estaPago(true)
+	assert.equals(true, paquete.estaPago())
+	matrix.mensajeroActual(chuckNorris)
+	assert.equals(true, matrix.puedePasar())
+}
+
+test "LincolnHawk pesa 80kg sin su vehiculo" {
+	lincolnHawk.pesoSinVehiculo(80)
+	assert.equals(80, lincolnHawk.pesoSinVehiculo())
+}
+
+test "LincolnHawk pesa 1080kg con un camion con 1 acoplado y su peso corporal es de 80kg" {
+	lincolnHawk.pesoSinVehiculo(80)
+	assert.equals(1080, lincolnHawk.peso())
+}
+
+test "El paquete de George que sí está pago no puede ser llevado por Lincoln Hawk (80kg) a Brooklyn si es que utiliza un camión con un acoplado" {
+	lincolnHawk.pesoSinVehiculo(80)
+	puenteDeBrooklyn.mensajeroActual(lincolnHawk)
+	assert.equals(false, puenteDeBrooklyn.puedePasar())
+}
+
+test "El paquete de George que sí está pago si puede ser llevado por Lincoln Hawk (80kg) a Brooklyn si es que utiliza una bicicleta" {
+	lincolnHawk.pesoSinVehiculo(80)
+	lincolnHawk.vehiculoActual(bici)
+	puenteDeBrooklyn.mensajeroActual(lincolnHawk)
+	assert.equals(true, puenteDeBrooklyn.puedePasar())
+}
